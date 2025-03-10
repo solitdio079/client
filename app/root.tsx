@@ -6,9 +6,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { UserContext } from "./contexts";
 import type { Route } from "./+types/root";
 import "./app.css";
+import { serverUrl } from "./utils/server";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -41,8 +42,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Get the user from the database and provide it to the context
+
 export default function App() {
-  return <Outlet />;
+
+  return (
+    <Outlet />
+  )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
