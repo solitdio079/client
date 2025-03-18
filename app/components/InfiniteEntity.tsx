@@ -27,6 +27,10 @@ export default function InfiniteEntity({
   }, [cursor, fetcher.data])
 
   const fetchMoreData = async () => {
+    let completeUrl = fetchMoreURL + `?cursor=${cursor || ''}&limit=${5}`
+    if (completeUrl.includes("?")) {
+       completeUrl = fetchMoreURL + `&cursor=${cursor || ''}&limit=${5}`
+    }
     try {
       const response = await fetch(
         fetchMoreURL + `?cursor=${cursor || ''}&limit=${5}`,
